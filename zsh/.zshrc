@@ -6,7 +6,7 @@
 autoload -U colors && colors
 autoload -Uz promptinit
 promptinit
-export LC_ALL="en_US"
+export LC_ALL="en_US.UTF-8"
 alias ls='ls --color=auto'
 
 
