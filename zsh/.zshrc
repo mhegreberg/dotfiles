@@ -8,7 +8,7 @@ autoload -Uz promptinit
 promptinit
 export LC_ALL="en_US.UTF-8"
 alias ls='ls --color=auto'
-
+RPROMPT='%3~'
 
 # completion settings
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}'
