@@ -10,6 +10,12 @@ export LC_ALL="en_US.UTF-8"
 alias ls='ls --color=auto'
 RPROMPT='%3~'
 
+# aliases
+alias v=nvim
+alias vim=nvim
+alias n=nvim
+alias nv=nvim
+
 # completion settings
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}'
 zstyle :compinstall filename '/home/mark/.zshrc'
