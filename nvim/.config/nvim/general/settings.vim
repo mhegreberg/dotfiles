@@ -22,14 +22,10 @@ set nu
 set cursorline                          " Enable highlighting of the current line
 set background=dark                     " tell vim what the background color looks like
 set showtabline=2                       " Always show tabs
-" set noshowmode                          " We don't need to see things like -- INSERT -- anymore
-" set nobackup                            " This is recommended by coc
-" set nowritebackup                       " This is recommended by coc
 set updatetime=300                      " Faster completion
 set timeoutlen=500                      " By default timeoutlen is 1000 ms
 set formatoptions-=cro                  " Stop newline continution of comments
 set clipboard=unnamedplus               " Copy paste between vim and everything else
-"set autochdir                           " Your working directory will always be the same as your working directory
 
 set tabstop=4
 set softtabstop=4
