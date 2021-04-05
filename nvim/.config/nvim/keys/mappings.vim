@@ -16,3 +16,6 @@ nnoremap <C-l> <C-w>l
 
 " save and run python code
 nnoremap <C-p> :w <bar> :! python3 % <cr>
+
+" append yank
+nnoremap <leader>y "Ay
