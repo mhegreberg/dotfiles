@@ -15,6 +15,7 @@ alias v=nvim
 alias vim=nvim
 alias n=nvim
 alias nv=nvim
+alias psrun='Powershell.exe  -File'
 
 # completion settings
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}'
