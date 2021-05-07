@@ -28,6 +28,7 @@ set formatoptions-=cro                  " Stop newline continution of comments
 set clipboard=unnamedplus               " Copy paste between vim and everything else
 
 set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set noexpandtab
+
+set smartcase
+set ignorecase
+set scrolloff=8
