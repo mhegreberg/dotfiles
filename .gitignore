@@ -1,0 +1,7 @@
+## dotfiles gitignore
+## Mark Hegreberg
+
+#neovim
+
+nvim/.local/
+nvim/.config/nvim/.netrwhist
