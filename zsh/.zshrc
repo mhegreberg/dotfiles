@@ -11,10 +11,15 @@ alias ls='ls --color=auto'
 RPROMPT='%3~'
 
 # aliases
+alias ':q'=exit
+alias ':wq'=exit
+alias 'ZZ'=exit
+
 alias v=nvim
 alias vim=nvim
 alias n=nvim
 alias nv=nvim
+
 alias psrun='Powershell.exe  -File'
 
 # completion settings
