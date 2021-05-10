@@ -31,4 +31,4 @@ set tabstop=4
 
 set smartcase
 set ignorecase
-set scrolloff=8
+set scrolloff=16
