@@ -22,3 +22,10 @@ nnoremap <C-p> :w <bar> :! python3 % <cr>
 
 " append yank
 nnoremap <leader>y "Ay
+
+" easy quickfixlist nav
+nnoremap <leader>[ :cprev <cr>
+nnoremap <leader>] :cnext <cr>
+nnoremap <leader>{ :cfirst <cr>
+nnoremap <leader>} :clast <cr>
+
