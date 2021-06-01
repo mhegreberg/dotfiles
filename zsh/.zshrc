@@ -20,6 +20,10 @@ alias vim=nvim
 alias n=nvim
 alias nv=nvim
 
+alias g=git
+alias G=git
+alias gf='git fugitive'
+
 alias psrun='Powershell.exe  -File'
 
 # completion settings
