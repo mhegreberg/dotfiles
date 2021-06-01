@@ -38,3 +38,9 @@ nnoremap <leader>] :cnext <cr>
 nnoremap <leader>{ :cfirst <cr>
 nnoremap <leader>} :clast <cr>
 
+
+" fugitve mappings
+nnoremap <leader>gg :G <cr>
+nnoremap <leader>gd :Gdiff <cr>
+nnoremap <leader>gl :Glog <cr>
+
