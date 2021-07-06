@@ -14,7 +14,9 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'PowerShell/PowerShellEditorServices'
 
 Plug 'pprovost/vim-ps1'
+
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-vinegar'
 Plug 'aymericbeaumet/vim-symlink'
   
@@ -24,7 +26,9 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
+Plug 'sbdchd/neoformat'
 
+Plug 'ThePrimeagen/vim-be-good'
 call plug#end()
 
 colorscheme gruvbox
