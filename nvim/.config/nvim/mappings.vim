@@ -72,3 +72,7 @@ nnoremap <C-f> <cmd>lua vim.lsp.buf.formatting_sync(nil, 100)<CR>
 " inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
  
 
+" interesting ideas
+vnoremap <leader>p "_dP
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
