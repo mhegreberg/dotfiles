@@ -53,3 +53,22 @@ nnoremap <leader>fd :Telescope git_files cwd=~/dotfiles <cr>
 nnoremap <leader>fb :Telescope buffers <cr> 
 nnoremap <leader>f; :Telescope commands <cr>
 
+" lsp mappings
+nnoremap gd <cmd>lua vim.lsp.buf.definition()<cr>
+nnoremap gD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap K <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <C-f> <cmd>lua vim.lsp.buf.formatting_sync(nil, 100)<CR>
+
+" compe mappings 
+
+" inoremap <silent><expr> <C-Space> compe#complete()
+" inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+" inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+" inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+" inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+ 
+
