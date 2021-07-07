@@ -8,27 +8,26 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'gruvbox-community/gruvbox'
 
-" LSP things
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
-Plug 'PowerShell/PowerShellEditorServices'
-
-Plug 'pprovost/vim-ps1'
-
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-vinegar'
 Plug 'aymericbeaumet/vim-symlink'
   
+Plug 'pprovost/vim-ps1'
+
+Plug 'ThePrimeagen/vim-be-good'
+
+" LSP things
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
+Plug 'PowerShell/PowerShellEditorServices'
+
 " Telescope and friends
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
-Plug 'sbdchd/neoformat'
-
-Plug 'ThePrimeagen/vim-be-good'
 call plug#end()
 
 colorscheme gruvbox
@@ -36,9 +35,11 @@ colorscheme gruvbox
 
 " LSP config
 lua << EOF
-
+		
 -- installed with:
 -- npm i -g pyright
+vim.lsp.set_log_level("debug")
+
 require('lspconfig').pyright.setup{}
 
 -- installed with:
@@ -48,14 +49,22 @@ require('lspconfig').tsserver.setup{}
 -- installed with:
 -- npm install -g vim-language-server
 require'lspconfig'.vimls.setup{}
--- installed with black magic. Here be dragons
+-- extract zip from here:
+-- https://github.com/PowerShell/PowerShellEditorServices/releases
+-- attempts to use version built locally have not been fruitful
 require('lspconfig').powershell_es.setup{
-  cmd = {'powershell.exe',
-		 '-NoLogo',
-		 '-NoProfile',
-		 '-Command',
-		 '\\\\wsl$\\Debian\\home\\mark\\.vim\\plugged\\PowerShellEditorServices\\module\\PowerShellEditorServices\\Start-EditorServices.ps1'}
-  
+bundle_path = '~/PowerShellEditorServices',
+cmd = {'pwsh',
+		'-NoLogo',
+		'-NoProfile',
+		'-Command',
+		"~/PowerShellEditorServices/PowerShellEditorServices/Start-EditorServices.ps1"}
+--   cmd = {'powershell.exe',
+-- 		 '-NoLogo',
+-- 		 '-NoProfile',
+-- 		 '-Command',
+-- 		 '/home/mark/.vim/plugged/PowerShellEditorServices/module/PowerShellEditorServices/Start-EditorServices.ps1'}
+--   
 }
 EOF
 
@@ -108,3 +117,6 @@ defaults = {
 
 require('telescope').load_extension('fzf')
 EOF
+
+
+" Soli Deo GLoria
