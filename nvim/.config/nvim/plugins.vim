@@ -42,7 +42,7 @@ lua << EOF
 require('lspconfig').pyright.setup{}
 
 -- installed with:
--- npm i -g tsserver
+-- npm i -g typescript typescript-language-server
 require('lspconfig').tsserver.setup{}
 
 -- installed with:
