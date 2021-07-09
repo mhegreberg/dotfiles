@@ -71,6 +71,9 @@ nnoremap <C-f> <cmd>lua vim.lsp.buf.formatting_sync(nil, 100)<CR>
 " inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 " inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
  
+" UltiSnips mappings
+nnoremap <leader>sl :UltiSnipsEdit <CR>
+
 
 " interesting ideas
 vnoremap <leader>p "_dP

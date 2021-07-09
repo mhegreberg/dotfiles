@@ -15,6 +15,10 @@ Plug 'aymericbeaumet/vim-symlink'
   
 Plug 'pprovost/vim-ps1'
 
+" snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
 Plug 'ThePrimeagen/vim-be-good'
 
 " LSP things
@@ -32,6 +36,10 @@ call plug#end()
 
 colorscheme gruvbox
 
+" ultisnips config
+let g:UltiSnipsEditSplit="vertical"
+set completeopt=menuone,noselect,preview
+
 
 " LSP config
 lua << EOF
@@ -39,6 +47,7 @@ lua << EOF
 -- installed with:
 -- npm i -g pyright
 vim.lsp.set_log_level("debug")
+
 
 require('lspconfig').pyright.setup{}
 
