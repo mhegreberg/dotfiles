@@ -24,6 +24,7 @@ Plug 'ThePrimeagen/vim-be-good'
 " LSP things
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
+Plug 'windwp/nvim-autopairs'
 Plug 'PowerShell/PowerShellEditorServices'
 
 " Telescope and friends
@@ -113,6 +114,14 @@ require'compe'.setup {
     luasnip = true;
   };
 }
+
+-- autopairs config
+require('nvim-autopairs').setup()
+
+require("nvim-autopairs.completion.compe").setup({
+  map_cr = true, --  map <CR> on insert mode
+  map_complete = true -- it will auto insert `(` after select function or method item
+})
 EOF
 
 " Telescope config
