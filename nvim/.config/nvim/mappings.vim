@@ -62,6 +62,7 @@ nnoremap K <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <C-f> <cmd>lua vim.lsp.buf.formatting_sync(nil, 100)<CR>
+nnoremap <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
 
 " compe mappings 
 
