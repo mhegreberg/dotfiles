@@ -1,0 +1,59 @@
+snippet #! "Powershell Boilerplate" b
+# ${1:Description}
+# ${2:Mark Hegreberg}
+# ${3: `!v strftime("%c")`}
+# Requires:
+# 	$4
+
+param ($5)
+
+$0
+
+
+
+
+
+
+
+
+
+
+# Soli Deo Gloria
+
+endsnippet
+
+snippet paramfill "request param if not filled" b
+if (${1:param} -eq $null) {
+	$1 = Read-Host -Prompt "${2:enter $1}"
+}	
+
+$0
+endsnippet
+
+snippet msolConnect "Connect to MsolService" 
+if ($${2:Credential} -ne $null) { ${1:Connect-MsolService} -Credential $$2 }
+else { $1 }
+
+$0
+endsnippet
+
+snippet install-import-module "install and import required module" b
+Install-Module -Name $1 ${2:-Required Version $3}
+Import-Module $1
+
+$0
+endsnippet
+		
+snippet password "convert string to secure string"
+$${1:password}= ConvertTo-SecureString $${2:$1} -AsPlainText -Force
+$0	
+endsnippet
+
+snippet print "Write-Host"
+Write-Host "$1"
+endsnippet
+		
+snippet PSDrive "mount new PSDrive"
+New-PSDrive -Name "$1" -PSProvider FileSystem -Root "$2" | Out-Null
+endsnippet
+		
