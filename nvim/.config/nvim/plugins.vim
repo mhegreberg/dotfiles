@@ -68,7 +68,7 @@ cmd = {'pwsh',
 		'-NoLogo',
 		'-NoProfile',
 		'-Command',
-		"~/PowerShellEditorServices/PowerShellEditorServices/Start-EditorServices.ps1"}
+		"~/LSP/PowerShellEditorServices/PowerShellEditorServices/Start-EditorServices.ps1"}
 --   cmd = {'powershell.exe',
 -- 		 '-NoLogo',
 -- 		 '-NoProfile',
@@ -76,6 +76,14 @@ cmd = {'pwsh',
 -- 		 '/home/mark/.vim/plugged/PowerShellEditorServices/module/PowerShellEditorServices/Start-EditorServices.ps1'}
 --   
 }
+-- Omnisharp
+-- C# LSP
+local pid = vim.fn.getpid()
+local omnisharp_bin = "/home/mark/LSP/Omnisharp/run"
+require'lspconfig'.omnisharp.setup{
+    cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) };
+}
+
 EOF
 
 " compe config
