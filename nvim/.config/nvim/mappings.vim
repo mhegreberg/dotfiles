@@ -32,11 +32,16 @@ nnoremap <C-p> :w <bar> :! python3 % <cr>
 " append yank
 nnoremap <leader>y "Ay
 
+" yank to end
+nnoremap Y y$
+
 " easy quickfixlist nav
 nnoremap <leader>[ :cprev <cr>
 nnoremap <leader>] :cnext <cr>
 nnoremap <leader>{ :cfirst <cr>
 nnoremap <leader>} :clast <cr>
+nnoremap <leader><leader>[ :copen <cr>
+nnoremap <leader><leader>] :cclose <cr>
 
 
 " fugitve mappings
@@ -47,11 +52,12 @@ nnoremap <leader>gl :Glog <cr>
 " telescope mappings
 nnoremap <leader>ff :Telescope find_files <cr> 
 nnoremap <leader>fhf :Telescope find_files hidden=true <cr> 
-nnoremap <leader>fg :Telescope git_files <cr> 
+nnoremap <leader>fg :Telescope git_files <cr>
 
 nnoremap <leader>fd :Telescope git_files cwd=~/dotfiles <cr> 
 nnoremap <leader>fb :Telescope buffers <cr> 
 nnoremap <leader>f; :Telescope commands <cr>
+nnoremap <leader>ft :Telescope live_grep <cr>
 
 " lsp mappings
 nnoremap gd <cmd>lua vim.lsp.buf.definition()<cr>
