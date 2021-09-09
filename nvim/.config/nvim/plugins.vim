@@ -7,6 +7,9 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'gruvbox-community/gruvbox'
+Plug '~/source/vimconflive2021-colorscheme'
+"Plug 'vim-conf-live/vimconflive2021-colorscheme'
+Plug 'ap/vim-css-color'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -36,7 +39,8 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 call plug#end()
 
-colorscheme gruvbox
+"colorscheme gruvbox
+colorscheme vimconflive-2021
 
 " ultisnips config
 let g:UltiSnipsEditSplit="vertical"
@@ -61,8 +65,8 @@ require'lspconfig'.vimls.setup{}
 -- https://github.com/PowerShell/PowerShellEditorServices/releases
 -- attempts to use version built locally have not been fruitful
 require('lspconfig').powershell_es.setup{
-bundle_path = '~/PowerShellEditorServices',
-cmd = {'pwsh',
+bundle_path = '~/LSP/PowershellEditorServices',
+cmd = {'PowerShell.exe',
 		'-NoLogo',
 		'-NoProfile',
 		'-Command',
