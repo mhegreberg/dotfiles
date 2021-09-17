@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+curl -L https://gitignore.io/api/$1 > .gitignore
+
+
+# soli deo glori
