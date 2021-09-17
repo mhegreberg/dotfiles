@@ -10,6 +10,21 @@ export LC_ALL="en_US.UTF-8"
 alias ls='ls --color=auto'
 RPROMPT='%3~'
 
+# dotnet 
+
+# opt out of telemetry
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+_dotnet_zsh_complete()
+{
+  local completions=("$(dotnet complete "$words")")
+
+  reply=( "${(ps:\n:)completions}" )
+}
+
+compctl -K _dotnet_zsh_complete dotnet
+
+
 # aliases
 alias ':q'=exit
 alias ':wq'=exit
