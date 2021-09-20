@@ -19,11 +19,12 @@ Plug 'aymericbeaumet/vim-symlink'
   
 Plug 'pprovost/vim-ps1'
 
+Plug 'OrangeT/vim-csharp'
+
 " snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-Plug 'ThePrimeagen/vim-be-good'
 
 " LSP things
 Plug 'neovim/nvim-lspconfig'
@@ -36,6 +37,10 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
+" fun
+Plug 'ThePrimeagen/vim-be-good'
+Plug 'vim-conf-live/pres.vim'
 
 call plug#end()
 
