@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+curl -L cht.sh/$1
+
+
+# soli deo glori

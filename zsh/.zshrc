@@ -10,6 +10,9 @@ export LC_ALL="en_US.UTF-8"
 alias ls='ls --color=auto'
 RPROMPT='%3~'
 
+export PATH=~/scripts:$PATH
+
+
 # dotnet 
 
 # opt out of telemetry
