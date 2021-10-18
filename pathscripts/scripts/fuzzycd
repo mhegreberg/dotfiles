@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+if [ -z $# ]
+then 
+		directory=$(find -L ~/ -type d | fzf)
+else 
+		directory=$(find -L $1 -type d | fzf)
+fi
+
+cd $directory

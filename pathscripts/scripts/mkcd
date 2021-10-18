@@ -2,5 +2,5 @@
 
 mkdir -p $1
 cd $1
-$SHELL
+# $SHELL
 # soli deo glori

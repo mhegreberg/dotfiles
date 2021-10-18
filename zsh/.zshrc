@@ -11,6 +11,7 @@ alias ls='ls --color=auto'
 RPROMPT='%3~'
 
 export PATH=~/scripts:$PATH
+export PATH=~/.dotnet/tools:$PATH
 
 
 # dotnet 
@@ -42,6 +43,12 @@ alias g=git
 alias G=git
 alias gf='git fugitive'
 
+alias t=tmux
+
+alias dn=dotnet
+
+alias mkcd='. mkcd'
+alias fcd='. fuzzycd'
 alias psrun='Powershell.exe  -File'
 
 # completion settings
