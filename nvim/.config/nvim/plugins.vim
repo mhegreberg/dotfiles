@@ -14,6 +14,7 @@ Plug 'ap/vim-css-color'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'aymericbeaumet/vim-symlink'
   
