@@ -49,7 +49,9 @@ nnoremap <leader>dt :windo diffthis <cr>
 " fugitve mappings
 nnoremap <leader>gg :G <cr>
 nnoremap <leader>gd :Gdiff <cr>
-nnoremap <leader>gl :Glog <cr>
+nnoremap <leader>gl :Gclog <cr>
+nnoremap <leader>gmh :diffget //2 \| diffupdate <cr>
+nnoremap <leader>gml :diffget //3 \| diffupdate <cr>
 
 " telescope mappings
 nnoremap <leader>ff :Telescope find_files <cr> 
