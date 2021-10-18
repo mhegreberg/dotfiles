@@ -32,3 +32,5 @@ set tabstop=4
 set smartcase
 set ignorecase
 set scrolloff=16
+
+set inccommand=split
