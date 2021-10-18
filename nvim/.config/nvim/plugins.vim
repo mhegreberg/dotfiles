@@ -22,6 +22,8 @@ Plug 'pprovost/vim-ps1'
 
 Plug 'OrangeT/vim-csharp'
 
+Plug 'neovimhaskell/haskell-vim'
+
 " snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
