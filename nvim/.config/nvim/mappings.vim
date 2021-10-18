@@ -43,6 +43,8 @@ nnoremap <leader>} :clast <cr>
 nnoremap <leader><leader>[ :copen <cr>
 nnoremap <leader><leader>] :cclose <cr>
 
+" diffthis
+nnoremap <leader>dt :windo diffthis <cr>
 
 " fugitve mappings
 nnoremap <leader>gg :G <cr>
