@@ -44,11 +44,13 @@ alias G=git
 alias gf='git fugitive'
 
 alias t=tmux
+alias tend='tmux kill-session'
 
 alias dn=dotnet
 
 alias mkcd='. mkcd'
 alias fcd='. fuzzycd'
+alias work=tmux-session-template
 alias psrun='Powershell.exe  -File'
 
 # completion settings

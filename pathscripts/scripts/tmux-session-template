@@ -3,7 +3,7 @@ if [ -z $1 ]
 then
 		dirpath=$(find -L  ~/Projects ~/testing -mindepth 1 -maxdepth 2 -type d | fzf)
 else 
-		dirpath=$1
+		dirpath=$(realpath $1 -s )
 fi
 
 if [ -z $dirpath ]
@@ -17,9 +17,14 @@ cd $dirpath
 tmux new-session -d -s $session_name -c $dirpath -n "repl"
 tmux new-window -n "nvim" -t $session_name
 tmux new-window -n "shell" -t $session_name -c $dirpath
-tmux send-keys -t "shell" "git status" Enter
-tmux send-keys -t "nvim" "nvim" Enter
+tmux send-keys -t $session_name:"shell" "git status" Enter
+tmux send-keys -t $session_name:"nvim" "nvim" Enter
 
 
-tmux attach -t $session_name
+if [ -z $TMUX ]
+then
+		tmux attach-session -t $session_name
+else
+		tmux switch-client -t $session_name
+fi
 
