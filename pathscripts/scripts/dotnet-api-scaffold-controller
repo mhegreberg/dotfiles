@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+echo "Controller to build:"  
+read controller
+echo "Model:"
+read model
+echo "Context:"
+read context
+
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet tool install -g dotnet-aspnet-codegenerator
+dotnet aspnet-codegenerator controller -name $controller -async -api -m $model -dc $context -outDir Controllers
