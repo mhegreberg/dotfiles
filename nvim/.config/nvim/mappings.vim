@@ -50,6 +50,7 @@ nnoremap <leader>dt :windo diffthis <cr>
 nnoremap <leader>gg :G <cr>
 nnoremap <leader>gd :Gdiff <cr>
 nnoremap <leader>gl :Gclog <cr>
+nnoremap <leader>gb :G blame <cr>
 nnoremap <leader>gmh :diffget //2 \| diffupdate <cr>
 nnoremap <leader>gml :diffget //3 \| diffupdate <cr>
 
