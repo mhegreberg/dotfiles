@@ -7,8 +7,8 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'gruvbox-community/gruvbox'
-Plug '~/source/vimconflive2021-colorscheme'
-"Plug 'vim-conf-live/vimconflive2021-colorscheme'
+"Plug '~/source/vimconflive2021-colorscheme'
+Plug 'vim-conf-live/vimconflive2021-colorscheme'
 Plug 'ap/vim-css-color'
 
 Plug 'tpope/vim-fugitive'
@@ -47,8 +47,8 @@ Plug 'vim-conf-live/pres.vim'
 
 call plug#end()
 
-"colorscheme gruvbox
-colorscheme vimconflive-2021
+colorscheme gruvbox
+"colorscheme vimconflive-2021
 
 " ultisnips config
 let g:UltiSnipsEditSplit="vertical"
