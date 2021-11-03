@@ -41,6 +41,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'ThePrimeagen/harpoon'
 
 " fun
 Plug 'ThePrimeagen/vim-be-good'
@@ -163,5 +164,16 @@ extensions = {
 require('telescope').load_extension('fzf')
 EOF
 
+" Harpoon config
+lua << EOF
+require("harpoon").setup({
+    global_settings = {
+        save_on_toggle = false,
+        save_on_change = true,
+        enter_on_sendcmd = false,
+    }
+})
+
+EOF
 
 " Soli Deo Gloria

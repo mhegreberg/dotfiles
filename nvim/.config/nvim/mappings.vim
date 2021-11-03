@@ -64,6 +64,17 @@ nnoremap <leader>fb :Telescope buffers <cr>
 nnoremap <leader>f; :Telescope commands <cr>
 nnoremap <leader>ft :Telescope live_grep <cr>
 
+" Harpoon mappings
+nnoremap <leader>ha :lua require("harpoon.mark").add_file() <cr>
+nnoremap <leader><leader>h :lua require("harpoon.ui").toggle_quick_menu() <CR>
+nnoremap <C-A-j> :lua require("harpoon.ui").toggle_quick_menu() <CR>
+
+nnoremap <leader>hh :lua require("harpoon.ui").nav_file(1) <cr>
+nnoremap <leader>hj :lua require("harpoon.ui").nav_file(2) <cr>
+nnoremap <leader>hk :lua require("harpoon.ui").nav_file(3) <cr>
+nnoremap <leader>hl :lua require("harpoon.ui").nav_file(4) <cr>
+
+
 " lsp mappings
 nnoremap gd <cmd>lua vim.lsp.buf.definition()<cr>
 nnoremap gD <cmd>lua vim.lsp.buf.declaration()<CR>
