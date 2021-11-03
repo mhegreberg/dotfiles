@@ -1,8 +1,8 @@
 " Use alt + hjkl to resize windows
-nnoremap <M-j>    :resize -2<CR>
-nnoremap <M-k>    :resize +2<CR>
-nnoremap <M-h>    :vertical resize -2<CR>
-nnoremap <M-l>    :vertical resize +2<CR>
+nnoremap <C-A-j>    :resize -2<CR>
+nnoremap <C-A-k>    :resize +2<CR>
+nnoremap <C-A-h>    :vertical resize -2<CR>
+nnoremap <C-A-l>    :vertical resize +2<CR>
 
 " return to normal
 inoremap jk <Esc>
@@ -22,12 +22,13 @@ tnoremap <C-h> <C-w>h
 tnoremap <C-j> <C-w>j
 tnoremap <C-k> <C-w>k
 
-" Tab to swap buffers
-nnoremap <TAB> :bnext<CR>
-nnoremap <S-TAB> :bprevious<CR>
-
-" save and run python code
-nnoremap <C-p> :w <bar> :! python3 % <cr>
+" move text
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " append yank
 nnoremap <leader>y "Ay
