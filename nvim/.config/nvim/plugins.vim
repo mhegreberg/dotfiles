@@ -6,11 +6,17 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+" colors
 Plug 'gruvbox-community/gruvbox'
-"Plug '~/source/vimconflive2021-colorscheme'
 Plug 'vim-conf-live/vimconflive2021-colorscheme'
 Plug 'ap/vim-css-color'
 
+" syntax-highlighing extention
+Plug 'pprovost/vim-ps1'
+Plug 'OrangeT/vim-csharp'
+Plug 'neovimhaskell/haskell-vim'
+
+" tpope
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-vinegar'
@@ -18,11 +24,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'aymericbeaumet/vim-symlink'
   
-Plug 'pprovost/vim-ps1'
-
-Plug 'OrangeT/vim-csharp'
-
-Plug 'neovimhaskell/haskell-vim'
 
 " snippets
 Plug 'SirVer/ultisnips'
@@ -35,7 +36,7 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'windwp/nvim-autopairs'
 Plug 'PowerShell/PowerShellEditorServices'
 
-" Telescope and friends
+" project navigation
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -89,7 +90,7 @@ cmd = {'PowerShell.exe',
 -- Omnisharp
 -- C# LSP
 local pid = vim.fn.getpid()
-local omnisharp_bin = "/home/mark/LSP/Omnisharp/run"
+local omnisharp_bin = "omnisharp"
 require'lspconfig'.omnisharp.setup{
     cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) };
 }
@@ -163,4 +164,4 @@ require('telescope').load_extension('fzf')
 EOF
 
 
-" Soli Deo GLoria
+" Soli Deo Gloria
