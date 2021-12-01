@@ -47,6 +47,19 @@ alias t=tmux
 alias tend='tmux kill-session'
 
 alias dn=dotnet
+alias dr='dotnet run'
+alias dr1='dotnet run --urls="http://localhost:7101;https://localhost:7100"'
+alias dr2='dotnet run --urls="http://localhost:7201;https://localhost:7200"'
+alias dr3='dotnet run --urls="http://localhost:7301;https://localhost:7300"'
+alias dr4='dotnet run --urls="http://localhost:7401;https://localhost:7400"'
+alias dr5='dotnet run --urls="http://localhost:7501;https://localhost:7500"'
+alias dw1='dotnet watch run --urls="http://localhost:7101;https://localhost:7100"'
+alias dw2='dotnet watch run --urls="http://localhost:7201;https://localhost:7200"'
+alias dw3='dotnet watch run --urls="http://localhost:7301;https://localhost:7300"'
+alias dw4='dotnet watch run --urls="http://localhost:7401;https://localhost:7400"'
+alias dw5='dotnet watch run --urls="http://localhost:7501;https://localhost:7500"'
+
+alias dk='sudo docker'
 
 alias mkcd='. mkcd'
 alias fcd='. fuzzycd'
