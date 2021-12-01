@@ -34,3 +34,6 @@ set ignorecase
 set scrolloff=16
 
 set inccommand=split
+
+
+autocmd BufNewFile,BufRead *.hs set expandtab

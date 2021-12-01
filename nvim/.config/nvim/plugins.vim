@@ -97,6 +97,10 @@ require'lspconfig'.omnisharp.setup{
     cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) };
 }
 
+--require'lspconfig'.csharp_ls.setup{}
+require'lspconfig'.hls.setup{
+}
+
 EOF
 
 " compe config
@@ -204,5 +208,14 @@ require'nvim-treesitter.configs'.setup {
     enable = true
   },
 }
+
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.haskell = {
+  install_info = {
+    url = "~/source/tree-sitter-haskell",
+    files = {"src/parser.c", "src/scanner.cc"}
+  }
+}
+
 EOF
 " Soli Deo Gloria
