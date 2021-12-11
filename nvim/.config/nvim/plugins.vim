@@ -26,6 +26,9 @@ Plug 'tpope/vim-eunuch'
 Plug 'aymericbeaumet/vim-symlink'
   
 
+Plug 'vimwiki/vimwiki'
+
+
 " snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -57,6 +60,8 @@ colorscheme gruvbox
 let g:UltiSnipsEditSplit="vertical"
 set completeopt=menuone,noselect,preview
 
+" vimwiki config
+let g:vimwiki_list = [{'path':  '~/vimwiki', 'auto_diary_index': 1}]
 
 " LSP config
 lua << EOF
@@ -184,7 +189,7 @@ EOF
 " Treesitter config
 lua << EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ignore_install = {}, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension

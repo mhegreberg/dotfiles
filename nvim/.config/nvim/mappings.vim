@@ -61,6 +61,7 @@ nnoremap <leader>fhf :Telescope find_files hidden=true <cr>
 nnoremap <leader>fg :Telescope git_files <cr>
 
 nnoremap <leader>fd :Telescope git_files cwd=~/dotfiles <cr> 
+nnoremap <leader>fw :Telescope live_grep cwd=~/vimwiki <cr> 
 nnoremap <leader>fb :Telescope buffers <cr> 
 nnoremap <leader>f; :Telescope commands <cr>
 nnoremap <leader>ft :Telescope live_grep <cr>
