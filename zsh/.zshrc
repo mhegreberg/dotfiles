@@ -19,6 +19,8 @@ export PATH=~/.dotnet/tools:$PATH
 # opt out of telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
+# zsh parameter completion for the dotnet CLI
+
 _dotnet_zsh_complete()
 {
   local completions=("$(dotnet complete "$words")")
@@ -27,6 +29,7 @@ _dotnet_zsh_complete()
 }
 
 compctl -K _dotnet_zsh_complete dotnet
+
 
 
 # aliases
@@ -113,3 +116,5 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+source .zshrc.local
