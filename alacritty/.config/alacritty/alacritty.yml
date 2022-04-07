@@ -1,6 +1,6 @@
-background_opacity: 0.7
 
 window:
   padding:
     x: 10
     y: 10
+  opacity: 0.7
