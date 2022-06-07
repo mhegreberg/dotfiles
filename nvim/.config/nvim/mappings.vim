@@ -47,6 +47,12 @@ nnoremap <leader><leader>] :cclose <cr>
 " diffthis
 nnoremap <leader>dt :windo diffthis <cr>
 
+" save as root
+cmap w!! w !sudo tee % <cr>
+
+" clear highlighting
+nnoremap <leader>/ :nohl <cr>
+
 " fugitve mappings
 nnoremap <leader>gg :G <cr>
 nnoremap <leader>gd :Gdiff <cr>
