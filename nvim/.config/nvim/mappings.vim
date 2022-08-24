@@ -46,6 +46,7 @@ nnoremap <leader><leader>] :cclose <cr>
 
 " diffthis
 nnoremap <leader>dt :windo diffthis <cr>
+nnoremap <leader>do :diffoff <cr>
 
 " save as root
 cmap w!! w !sudo tee % <cr>
@@ -62,7 +63,7 @@ nnoremap <leader>gmh :diffget //2 \| diffupdate <cr>
 nnoremap <leader>gml :diffget //3 \| diffupdate <cr>
 
 " telescope mappings
-nnoremap <leader>ff :Telescope find_files <cr> 
+nnoremap <leader>ff :Telescope find_files initial_mode=insert<cr> 
 nnoremap <leader>fhf :Telescope find_files hidden=true <cr> 
 nnoremap <leader>fg :Telescope git_files <cr>
 

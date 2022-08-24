@@ -45,8 +45,8 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ThePrimeagen/harpoon'
-
 " fun
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'vim-conf-live/pres.vim'
@@ -80,20 +80,20 @@ require'lspconfig'.vimls.setup{}
 -- extract zip from here:
 -- https://github.com/PowerShell/PowerShellEditorServices/releases
 -- attempts to use version built locally have not been fruitful
-require('lspconfig').powershell_es.setup{
-bundle_path = '~/LSP/PowershellEditorServices',
-cmd = {'PowerShell.exe',
-		'-NoLogo',
-		'-NoProfile',
-		'-Command',
-		"~/LSP/PowerShellEditorServices/PowerShellEditorServices/Start-EditorServices.ps1"}
---   cmd = {'powershell.exe',
--- 		 '-NoLogo',
--- 		 '-NoProfile',
--- 		 '-Command',
--- 		 '/home/mark/.vim/plugged/PowerShellEditorServices/module/PowerShellEditorServices/Start-EditorServices.ps1'}
---   
-}
+--require('lspconfig').powershell_es.setup{
+--bundle_path = '~/LSP/PowershellEditorServices',
+--cmd = {'PowerShell.exe',
+--		'-NoLogo',
+--		'-NoProfile',
+--		'-Command',
+--		"~/LSP/PowerShellEditorServices/PowerShellEditorServices/Start-EditorServices.ps1"}
+----   cmd = {'powershell.exe',
+---- 		 '-NoLogo',
+---- 		 '-NoProfile',
+---- 		 '-Command',
+---- 		 '/home/mark/.vim/plugged/PowerShellEditorServices/module/PowerShellEditorServices/Start-EditorServices.ps1'}
+----   
+--}
 -- Omnisharp
 -- C# LSP
 local pid = vim.fn.getpid()
@@ -159,6 +159,7 @@ lua << EOF
 require('telescope').setup{
 defaults = {
 	Prompt_prefix = ">",	
+	initial_mode = "insert",
 	},
 extensions = {
     fzf = {
@@ -189,7 +190,7 @@ EOF
 " Treesitter config
 lua << EOF
 require'nvim-treesitter.configs'.setup {
-ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ignore_install = {}, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension

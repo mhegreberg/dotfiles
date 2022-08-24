@@ -18,7 +18,10 @@ export PATH=~/.dotnet/tools:$PATH
 
 # opt out of telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
-
+# make entity framework calm down
+export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=0
+export DOTNET_SYSTEM_GLOBALIZATION_PREDEFINED_CULTURES_ONLY=0
+export CLR_ICU_VERSION_OVERRIDE="71.1"
 # zsh parameter completion for the dotnet CLI
 
 _dotnet_zsh_complete()
@@ -29,7 +32,6 @@ _dotnet_zsh_complete()
 }
 
 compctl -K _dotnet_zsh_complete dotnet
-
 
 
 # aliases
@@ -61,6 +63,7 @@ alias dw2='dotnet watch run --urls="http://localhost:7201;https://localhost:7200
 alias dw3='dotnet watch run --urls="http://localhost:7301;https://localhost:7300"'
 alias dw4='dotnet watch run --urls="http://localhost:7401;https://localhost:7400"'
 alias dw5='dotnet watch run --urls="http://localhost:7501;https://localhost:7500"'
+alias fastef='dotnet ef --no-build'
 
 alias dk='sudo docker'
 
@@ -115,6 +118,7 @@ zle-line-init() {
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source ~/.zshrc.local
+source /usr/share/nvm/init-nvm.sh
+source ~/.local/share/zsh/highlighting/zsh-syntax-highlighting.zsh
