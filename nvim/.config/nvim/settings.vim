@@ -21,13 +21,14 @@ set relativenumber                              " Line numbers
 set nu
 set cursorline                          " Enable highlighting of the current line
 set background=dark                     " tell vim what the background color looks like
-set showtabline=2                       " Always show tabs
+set showtabline=2                       " dont show tabs
 set updatetime=300                      " Faster completion
 set timeoutlen=500                      " By default timeoutlen is 1000 ms
 set formatoptions-=cro                  " Stop newline continution of comments
 set clipboard=unnamedplus               " Copy paste between vim and everything else
 
 set tabstop=4
+set shiftwidth=0
 
 set smartcase
 set ignorecase

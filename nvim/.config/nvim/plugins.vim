@@ -40,6 +40,12 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'windwp/nvim-autopairs'
 Plug 'PowerShell/PowerShellEditorServices'
 
+" Debugging
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'nvim-telescope/telescope-dap.nvim'
+
 " project navigation
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -106,6 +112,40 @@ require'lspconfig'.omnisharp.setup{
 require'lspconfig'.hls.setup{
 }
 
+EOF
+
+" nvim-dap
+lua << EOF
+
+require("nvim-dap-virtual-text").setup()
+require("dapui").setup()
+
+local dap, dapui = require("dap"), require("dapui")
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.after.event_terminated["dapui_config"] = function()
+  dapui.close()
+end
+dap.listeners.after.event_exited["dapui_config"] = function()
+  dapui.close()
+end
+    dap.adapters.coreclr = {
+      type = 'executable',
+      command = 'netcoredbg',
+      args = {'--interpreter=vscode'}
+    }
+
+	dap.configurations.cs = {
+	  {
+		type = "coreclr",
+		name = "launch - netcoredbg",
+		request = "launch",
+		program = function()
+			return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+		end,
+	  },
+	}
 EOF
 
 " compe config
@@ -191,7 +231,7 @@ EOF
 lua << EOF
 require'nvim-treesitter.configs'.setup {
 ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ignore_install = {}, -- List of parsers to ignore installing
+  ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension
     disable = {},  -- list of language that will be disabled
@@ -224,4 +264,8 @@ parser_config.haskell = {
 }
 
 EOF
+
+
+
+
 " Soli Deo Gloria

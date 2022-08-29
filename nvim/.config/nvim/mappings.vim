@@ -63,13 +63,13 @@ nnoremap <leader>gmh :diffget //2 \| diffupdate <cr>
 nnoremap <leader>gml :diffget //3 \| diffupdate <cr>
 
 " telescope mappings
-nnoremap <leader>ff :Telescope find_files initial_mode=insert<cr> 
-nnoremap <leader>fhf :Telescope find_files hidden=true <cr> 
+nnoremap <leader>ff :Telescope find_files<cr>
+nnoremap <leader>fhf :Telescope find_files hidden=true<cr>
 nnoremap <leader>fg :Telescope git_files <cr>
 
-nnoremap <leader>fd :Telescope git_files cwd=~/dotfiles <cr> 
+nnoremap <leader>fd :Telescope git_files cwd=~/dotfiles <cr>
 nnoremap <leader>fw :Telescope live_grep cwd=~/vimwiki <cr> 
-nnoremap <leader>fb :Telescope buffers <cr> 
+nnoremap <leader>fb :Telescope buffers <cr>
 nnoremap <leader>f; :Telescope commands <cr>
 nnoremap <leader>ft :Telescope live_grep <cr>
 
@@ -94,6 +94,19 @@ nnoremap <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <C-f> <cmd>lua vim.lsp.buf.formatting_sync(nil, 100)<CR>
 nnoremap <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
+
+" nvim-dap  mappings
+nnoremap <leader>d1 <Cmd>lua require'dap'.continue()<CR>
+nnoremap <leader>d2 <Cmd>lua require'dap'.step_over()<CR>
+nnoremap <leader>d3 <Cmd>lua require'dap'.step_into()<CR>
+nnoremap <leader>d4 <Cmd>lua require'dap'.step_out()<CR>
+nnoremap <leader>do <cmd>lua require("dapui").open()<CR>
+nnoremap <Leader>b <Cmd>lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <Leader>B <Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+nnoremap <Leader>lp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+nnoremap <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
+nnoremap <Leader>dl <Cmd>lua require'dap'.run_last()<CR>
+
 
 " compe mappings 
 
