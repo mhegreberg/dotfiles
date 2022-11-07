@@ -90,9 +90,9 @@ nnoremap gD <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap gi <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap K <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-nnoremap <C-f> <cmd>lua vim.lsp.buf.formatting_sync(nil, 100)<CR>
+nnoremap <C-p> <cmd>lua vim.diagnostic.goto_prev()<CR>
+nnoremap <C-n> <cmd>lua vim.diagnostic.goto_next()<CR>
+nnoremap <C-f> <cmd>lua vim.lsp.buf.format(nil, 100)<CR>
 nnoremap <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
 
 " nvim-dap  mappings

@@ -1,6 +1,6 @@
 # zsh config
 # Mark Hegreberg
-# written 2020-05030
+# written 2021-05030
 
 # colors and prompts
 autoload -U colors && colors
@@ -20,7 +20,7 @@ export PATH=~/.dotnet/tools:$PATH
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 # make entity framework calm down
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=0
-export DOTNET_SYSTEM_GLOBALIZATION_PREDEFINED_CULTURES_ONLY=0
+export DOTNET_SYSTEM_GLOBALIZATION_PREDEFINED_CULTURES_ONLY=0:
 export CLR_ICU_VERSION_OVERRIDE="71.1"
 # zsh parameter completion for the dotnet CLI
 
@@ -50,7 +50,7 @@ alias gf='git fugitive'
 alias gs='git status'
 
 alias t=tmux
-alias tend='tmux kill-session'
+alias tend='tmux kill-session && tmux attach'
 
 alias dn=dotnet
 alias dnb='dotnet build'
@@ -123,5 +123,4 @@ echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 source ~/.zshrc.local
-source /usr/share/nvm/init-nvm.sh
 source ~/.local/share/zsh/highlighting/zsh-syntax-highlighting.zsh
