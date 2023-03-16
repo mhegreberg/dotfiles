@@ -39,6 +39,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'windwp/nvim-autopairs'
 Plug 'PowerShell/PowerShellEditorServices'
+Plug 'ErichDonGubler/lsp_lines.nvim'
 
 " Debugging
 Plug 'mfussenegger/nvim-dap'
@@ -53,9 +54,12 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ThePrimeagen/harpoon'
+
 " fun
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'vim-conf-live/pres.vim'
+Plug 'Eandrju/cellular-automaton.nvim'
+
 
 call plug#end()
 
@@ -71,7 +75,23 @@ let g:vimwiki_list = [{'path':  '~/vimwiki', 'auto_diary_index': 1}]
 
 " LSP config
 lua << EOF
-		
+require("lsp_lines").setup()
+local function toggle_diagnostics()
+  local diagnostics_on = require("lsp_lines").toggle()
+  if diagnostics_on then
+    vim.diagnostic.config({
+      virtual_text = false,
+    })
+  else
+    vim.diagnostic.config({
+      virtual_text = { spacing = 4, prefix = "●" },
+    })
+  end
+end
+vim.keymap.set("n", "<Leader>ch", toggle_diagnostics, { desc = "Toggle [i]nline diagnostic type" })
+
+
+require'lspconfig'.rust_analyzer.setup{}		
 -- installed with:
 -- npm i -g pyright
 require('lspconfig').pyright.setup{}
@@ -106,6 +126,7 @@ local pid = vim.fn.getpid()
 local omnisharp_bin = "omnisharp"
 require'lspconfig'.omnisharp.setup{
     cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) };
+	filetypes = {"cs", "vb", "razor", "cshtml"},
     -- Enables support for reading code style, naming convention and analyzer
     -- settings from .editorconfig.
     enable_editorconfig_support = true,
@@ -139,12 +160,15 @@ require'lspconfig'.omnisharp.setup{
 
     -- Only run analyzers against open files when 'enableRoslynAnalyzers' is
     -- true
-    analyze_open_documents_only = false,
+    analyze_open_documents_only = false
 }
 
 --require'lspconfig'.csharp_ls.setup{}
 require'lspconfig'.hls.setup{
 }
+
+-- ruby
+require'lspconfig'.ruby_ls.setup{}
 
 EOF
 

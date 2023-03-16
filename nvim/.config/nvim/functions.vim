@@ -8,3 +8,4 @@ function! Writer ()
 endfunction
 
 com! WR call Writer()
+

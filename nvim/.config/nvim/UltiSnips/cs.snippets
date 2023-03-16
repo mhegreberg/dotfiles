@@ -3,13 +3,13 @@ snippet #! "C# boilerplate" b
 // ${2:Mark Hegreberg}
 // ${3: `!v strftime("%c")`}
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+namespace ${4: Name.Space};
 $0
 
+	public class ${5: Class}
+{
 
+}
 
 
 
@@ -23,5 +23,8 @@ endsnippet
 
 snippet gs "get and set"
 { get; set; }
+endsnippet
 
+snippet gi "get and init"
+{ get; init; }
 endsnippet

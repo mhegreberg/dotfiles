@@ -94,7 +94,6 @@ nnoremap <C-p> <cmd>lua vim.diagnostic.goto_prev()<CR>
 nnoremap <C-n> <cmd>lua vim.diagnostic.goto_next()<CR>
 nnoremap <C-f> <cmd>lua vim.lsp.buf.format(nil, 100)<CR>
 nnoremap <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
-
 " nvim-dap  mappings
 nnoremap <leader>d1 <Cmd>lua require'dap'.continue()<CR>
 nnoremap <leader>d2 <Cmd>lua require'dap'.step_over()<CR>
