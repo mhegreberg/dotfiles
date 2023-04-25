@@ -38,5 +38,5 @@ set inccommand=split
 
 
 autocmd BufNewFile,BufRead *.hs set expandtab
-autocmd BufNewFile,BufRead *.cshtml setfiletype html
-autocmd BufNewFile,BufRead *.razor setfiletype html
+"autocmd BufNewFile,BufRead *.cshtml setfiletype html
+"autocmd BufNewFile,BufRead *.razor setfiletype html

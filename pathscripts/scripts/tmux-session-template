@@ -17,6 +17,7 @@ cd $dirpath
 tmux new-session -d -s $session_name -c $dirpath -n "repl"
 tmux new-window -n "nvim" -t $session_name
 tmux new-window -n "shell" -t $session_name -c $dirpath
+tmux send-keys -t $session_name:"shell" "git branch" Enter
 tmux send-keys -t $session_name:"shell" "git status" Enter
 tmux send-keys -t $session_name:"nvim" "nvim" Enter
 
