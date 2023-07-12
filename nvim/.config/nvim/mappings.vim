@@ -107,6 +107,13 @@ nnoremap <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
 nnoremap <Leader>dl <Cmd>lua require'dap'.run_last()<CR>
 
 
+" Treesitter mappings
+nnoremap <leader>tsp :TSPlaygroundToggle <cr>
+nnoremap <leader>tsh :TSHighlightCapturesUnderCursor <cr>
+nnoremap <leader>tsn :TSNodeUnderCursor <cr>
+
+
+
 " compe mappings 
 
 " inoremap <silent><expr> <C-Space> compe#complete()

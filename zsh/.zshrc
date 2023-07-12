@@ -70,6 +70,8 @@ alias dw4='dotnet watch run --urls="http://localhost:7401;https://localhost:7400
 alias dw5='dotnet watch run --urls="http://localhost:7501;https://localhost:7500"'
 alias dnef='dotnet ef'
 alias fastef='dotnet ef --no-build'
+alias dnup='dotnet list package --outdated'
+alias dnap='dotnet add package'
 
 alias dk='sudo docker'
 
