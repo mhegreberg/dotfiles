@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+name="${1%.*}"
+echo "Extracting $name"
+echo "Enter Import Password:"
+read -s password
+echo "Enter PEM pass phrase:"
+read -s pempass
+echo "creating public key as $name.crt"
+openssl pkcs12 -in $1 -clcerts -nokeys -out "$name.crt" \
+	-passin pass:"$password"
+echo "creating encrypted private key as $name-enc.key"
+openssl pkcs12 -in $1 -nocerts -out "$name-enc.key" \
+	-passin pass:"$password" \
+	-passout pass:"$pempass"
+echo "creating decrypted private key as $name.key"
+openssl rsa -in "$name-enc.key" -out "$name.key" \
+	-passin pass:"$pempass"
+# soli deo gloria
