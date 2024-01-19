@@ -56,7 +56,7 @@ nnoremap <leader>/ :nohl <cr>
 
 " fugitve mappings
 nnoremap <leader>gg :G <cr>
-nnoremap <leader>gd :Gdiff <cr>
+nnoremap <leader>gd :Gdiffsplit! <cr>
 nnoremap <leader>gl :Gclog <cr>
 nnoremap <leader>gb :G blame <cr>
 nnoremap <leader>gmh :diffget //2 \| diffupdate <cr>

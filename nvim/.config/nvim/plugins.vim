@@ -11,6 +11,7 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'vim-conf-live/vimconflive2021-colorscheme'
 Plug 'ap/vim-css-color'
 
+
 " syntax-highlighing extention
 "Plug 'pprovost/vim-ps1'
 "Plug 'OrangeT/vim-csharp'
@@ -96,7 +97,9 @@ local function toggle_diagnostics()
 end
 vim.keymap.set("n", "<Leader>ch", toggle_diagnostics, { desc = "Toggle [i]nline diagnostic type" })
 
-
+require'lspconfig'.eslint.setup{}
+-- installed with:
+-- npm i -g vscode-langservers-extracted
 require'lspconfig'.rust_analyzer.setup{}		
 -- installed with:
 -- npm i -g pyright
@@ -426,13 +429,6 @@ ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainer
 }
 
 
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.haskell = {
-  install_info = {
-    url = "~/source/tree-sitter-haskell",
-    files = {"src/parser.c", "src/scanner.cc"}
-  }
-}
 
 EOF
 

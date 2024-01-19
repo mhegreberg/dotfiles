@@ -13,6 +13,7 @@ RPROMPT='%3~'
 export PATH=~/scripts:$PATH
 export PATH=~/.dotnet/tools:$PATH
 
+export KUBE_EDITOR=nvim
 
 # dotnet 
 
@@ -73,7 +74,10 @@ alias fastef='dotnet ef --no-build'
 alias dnup='dotnet list package --outdated'
 alias dnap='dotnet add package'
 
-alias dk='sudo docker'
+alias dk=docker
+alias kubectl=kubecolor
+alias kc=kubecolor
+alias kcuc='kubectl config use-context'
 
 alias mkcd='. mkcd'
 alias fcd='. fuzzycd'
@@ -88,6 +92,11 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
+
+# get zsh complete kubectl
+source <(kubectl completion zsh)
+# make completion work with kubecolor
+compdef kubecolor=kubectl
 
 # history control
 HISTFILE=~/.cache/zsh/histfile
