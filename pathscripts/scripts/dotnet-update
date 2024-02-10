@@ -1,0 +1,12 @@
+#! /bin/sh
+
+dotnet list package --outdated | \
+awk 'NF' | \
+fzf --header 'Search package name' \
+--tac -m --height=~100%  --info=hidden \
+--border --border-label-pos=3 \
+--border-label="╢ Select packages to update (tab selects, enter to continue)╟" \
+--margin=1 --padding=1 | \
+awk '{print $2}' | \
+xargs -L 1 --no-run-if-empty \
+dotnet add package
