@@ -1,0 +1,26 @@
+#!/bin/bash
+config="cat $HOME/.config/multi-ssh/clusters.json"
+clusterSelected=$($config | jq -r ".clusters[] | .name" | \
+	fzf --header 'Select cluster for multi-ssh' \
+	--tac --height=~100% )
+echo "selected $clusterSelected"
+nodes=$($config | jq -r ".clusters[] | select(.name==\"$clusterSelected\") | .nodes[]")
+echo "connecting to:
+${nodes[*]}"
+
+tmux new-session -d -s $clusterSelected
+
+for node in $($config | jq -r ".clusters[] | select(.name==\"$clusterSelected\") | .nodes[]")
+do
+	tmux new-window -n "$node" -t $clusterSelected ssh $node
+	#tmux send-keys -t $clusterSelected:"$node" "ssh $node" Enter
+done
+
+tmux select-window $clusterSelected:$node[0]
+
+if [ -z $TMUX ]
+then
+		tmux attach-session -t $clusterSelected
+else
+		tmux switch-client -t $clusterSelected
+
