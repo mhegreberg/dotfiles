@@ -1,26 +1,55 @@
-#!/bin/bash
-config="cat $HOME/.config/multi-ssh/clusters.json"
-clusterSelected=$($config | jq -r ".clusters[] | .name" | \
-	fzf --header 'Select cluster for multi-ssh' \
-	--tac --height=~100% )
-echo "selected $clusterSelected"
+#!/usr/bin/env sh
+# script to start a batch of ssh sessions. requires jq
+# reads a json file from $HOME/.config/multi-ssh/clusters.json for data
+
+if ! command -v jq &> /dev/null
+then 
+	echo "multi-ssh requires jq. please install jq"
+	exit 1
+fi 
+
+if [ -f $HOME/.config/multi-ssh/clusters.json ]
+then
+	config="cat $HOME/.config/multi-ssh/clusters.json"
+else
+	echo "no config found. create file at $HOME/.config/multi-ssh/clusters.json"
+	echo "json file should have the following structure:"
+	sample=" {\"clusters\":[
+	{ \"name\":\"clusterName\", \"nodes\":[\"node1\",\"node2\",\"node3\"]},
+	{ \"name\":\"otherCluster\", \"nodes\":[\"singleNode\"]} ]}"
+	echo $sample | jq -r
+	exit 1
+fi
+
+if [ -z $1 ]
+then
+	clusterSelected=$($config | jq -r ".clusters[] | .name" | \
+		fzf --header 'Select cluster for multi-ssh' \
+		--tac --height=~100% )
+else
+	clusterSelected=$1
+fi
+
+clusterExists=$($config | jq -r ".clusters | any(.name==\"$clusterSelected\")")
+if [ $clusterExists = 'false' ]
+then
+	echo "invalid cluster"
+	exit 1
+fi
+
+tmux new-session -d -s $clusterSelected -n 'local'
+
 nodes=$($config | jq -r ".clusters[] | select(.name==\"$clusterSelected\") | .nodes[]")
-echo "connecting to:
-${nodes[*]}"
-
-tmux new-session -d -s $clusterSelected
-
-for node in $($config | jq -r ".clusters[] | select(.name==\"$clusterSelected\") | .nodes[]")
+for node in $nodes
 do
-	tmux new-window -n "$node" -t $clusterSelected ssh $node
+	tmux new-window -a -n "$node" -t $clusterSelected ssh $node
 	#tmux send-keys -t $clusterSelected:"$node" "ssh $node" Enter
 done
-
-tmux select-window $clusterSelected:$node[0]
 
 if [ -z $TMUX ]
 then
 		tmux attach-session -t $clusterSelected
 else
 		tmux switch-client -t $clusterSelected
+fi
 
