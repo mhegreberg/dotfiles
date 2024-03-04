@@ -2,6 +2,7 @@
 # script to start a batch of ssh sessions. requires jq
 # reads a json file from $HOME/.config/multi-ssh/clusters.json for data
 
+## pre-flight checks
 if ! command -v jq &> /dev/null
 then 
 	echo "multi-ssh requires jq. please install jq"
@@ -21,6 +22,37 @@ else
 	exit 1
 fi
 
+## functions
+clusterValidityCheck()
+{
+	clusterExists=$($config | jq -r ".clusters | any(.name==\"$1\")")
+	if [ $clusterExists = 'false' ]
+	then
+		echo "invalid cluster"
+		exit 1
+	fi
+}
+getNodes()
+{
+	nodes=$($config | jq -r ".clusters[] | select(.name==\"$1\") | .nodes[]")
+	echo $nodes
+}
+
+## command mode
+#runs command on all nodes
+if [ $# -gt 1 ]
+then
+	echo "command mode"
+	clusterSelected=$1
+	clusterValidityCheck $clusterSelected
+	command="${*:2}"
+	nodes="$(getNodes $clusterSelected |sed -e "s/ /,/g" )"
+	parallel --tag --nonall --keep-order -S $nodes $command
+	exit 0 
+fi
+
+## tmux mode
+#enters tmux session with all nodes
 if [ -z $1 ]
 then
 	clusterSelected=$($config | jq -r ".clusters[] | .name" | \
@@ -30,16 +62,11 @@ else
 	clusterSelected=$1
 fi
 
-clusterExists=$($config | jq -r ".clusters | any(.name==\"$clusterSelected\")")
-if [ $clusterExists = 'false' ]
-then
-	echo "invalid cluster"
-	exit 1
-fi
+clusterValidityCheck $clusterSelected
 
 tmux new-session -d -s $clusterSelected -n 'local'
 
-nodes=$($config | jq -r ".clusters[] | select(.name==\"$clusterSelected\") | .nodes[]")
+nodes="$(getNodes $clusterSelected)"
 for node in $nodes
 do
 	tmux new-window -a -n "$node" -t $clusterSelected ssh $node
@@ -53,3 +80,4 @@ else
 		tmux switch-client -t $clusterSelected
 fi
 
+exit 0
