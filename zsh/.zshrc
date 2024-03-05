@@ -7,7 +7,8 @@ autoload -Uz promptinit
 promptinit
 export LC_ALL="en_US.UTF-8"
 alias ls='ls --color=auto'
-RPROMPT='%3~'
+PROMPT='%F{red}%(?..%B(%?%)%b)%f%m%#' # if last command error, show error in red, then MachineName%
+RPROMPT='%3~' # on the right, show working dir
 
 
 # history control
