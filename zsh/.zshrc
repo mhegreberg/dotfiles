@@ -147,7 +147,7 @@ then
 	alias kubectl=kubecolor
 	alias kc=kubecolor
 	alias kcuc='kubectl config use-context'
-
+	alias kcs='kubectl config current-context && kubectl get nodes && kubectl get pods'
 	source <(kubectl completion zsh)
 	compdef kubecolor=kubectl
 
@@ -157,7 +157,7 @@ then
 
 	alias kc=kubectl
 	alias kcuc='kubectl config use-context'
-
+	alias kcs='kubectl config current-context && kubectl get nodes && kubectl get pods'
 	source <(kubectl completion zsh)
 fi
 
