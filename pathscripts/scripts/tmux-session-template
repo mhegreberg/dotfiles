@@ -1,31 +1,33 @@
 #!/usr/bin/env sh
 if [ -z $1 ]
 then
-		dirpath=$(find -L  ~/Projects ~/testing -mindepth 1 -maxdepth 2 -type d | fzf)
+	dirpath=$(find -L  ~/Projects ~/testing -mindepth 1 -maxdepth 2 -type d | fzf)
 else 
-		dirpath=$(realpath $1 -s )
+	dirpath=$(realpath $1 -s )
 fi
 
 if [ -z $dirpath ]
 then
-		exit 1
+	exit 1
 fi
 
 session_name=$(basename "$dirpath" | tr . _)
+sessions=$(tmux list-sessions)
 
+if ! [[ $sessions == *"$session_name"* ]]; then
 cd $dirpath
-tmux new-session -d -s $session_name -c $dirpath -n "repl"
-tmux new-window -n "nvim" -t $session_name
-tmux new-window -n "shell" -t $session_name -c $dirpath
-tmux send-keys -t $session_name:"shell" "git branch;git status" Enter
-#tmux send-keys -t $session_name:"shell" "git status" Enter
-tmux send-keys -t $session_name:"nvim" "nvim" Enter
-
+    tmux new-session -d -s $session_name -c $dirpath -n "repl"
+    tmux new-window -n "nvim" -t $session_name
+    tmux new-window -n "shell" -t $session_name -c $dirpath
+    tmux send-keys -t $session_name:"shell" "git branch;git status" Enter
+    #tmux send-keys -t $session_name:"shell" "git status" Enter
+    tmux send-keys -t $session_name:"nvim" "nvim" Enter
+fi
 
 if [ -z $TMUX ]
 then
-		tmux attach-session -t $session_name
+	tmux attach-session -t $session_name
 else
-		tmux switch-client -t $session_name
+	tmux switch-client -t $session_name
 fi
 
