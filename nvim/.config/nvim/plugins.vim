@@ -42,10 +42,12 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'windwp/nvim-autopairs'
 Plug 'PowerShell/PowerShellEditorServices'
 Plug 'ErichDonGubler/lsp_lines.nvim'
+Plug 'towolf/vim-helm'
 
 " Debugging
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
+Plug 'nvim-neotest/nvim-nio'
 Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'nvim-telescope/telescope-dap.nvim'
 
@@ -107,7 +109,7 @@ require('lspconfig').pyright.setup{}
 
 -- installed with:
 -- npm i -g typescript typescript-language-server
-require('lspconfig').tsserver.setup{}
+require('lspconfig').ts_ls.setup{}
 
 -- installed with:
 -- npm install -g vim-language-server
@@ -260,8 +262,9 @@ require'lspconfig'.hls.setup{
 }
 
 -- ruby
-require'lspconfig'.ruby_ls.setup{}
+require'lspconfig'.ruby_lsp.setup{}
 
+require'lspconfig'.helm_ls.setup{}
 EOF
 
 " nvim-dap
