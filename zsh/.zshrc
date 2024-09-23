@@ -131,7 +131,7 @@ then
 	alias dw5='dotnet watch run --urls="http://localhost:7501;https://localhost:7500"'
 	alias dnef='dotnet ef'
 	alias fastef='dotnet ef --no-build'
-	alias dnup='dotnet list package --outdated'
+	alias dnup='dotnet update'
 	alias dnap='dotnet add package'
 fi
 
@@ -143,6 +143,7 @@ fi
 if command -v kubecolor &> /dev/null
 then
 	export KUBE_EDITOR=nvim
+	export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 	alias kubectl=kubecolor
 	alias kc=kubecolor
@@ -154,6 +155,7 @@ then
 elif command -v kubectl &> /dev/null
 then
 	export KUBE_EDITOR=nvim
+	export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 	alias kc=kubectl
 	alias kcuc='kubectl config use-context'
@@ -166,6 +168,12 @@ then
 	# ruby
 	export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 	export PATH="$PATH:$GEM_HOME/bin"
+fi
+
+if command -v wishlist &> /dev/null
+then 
+	# wishlist
+	alias wl=wishlist
 fi
 
 
