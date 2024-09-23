@@ -59,6 +59,7 @@ nnoremap <leader>gg :G <cr>
 nnoremap <leader>gd :Gdiffsplit! <cr>
 nnoremap <leader>gl :Gclog <cr>
 nnoremap <leader>gb :G blame <cr>
+nnoremap <leader>gw :Gwrite <cr>
 nnoremap <leader>gmh :diffget //2 \| diffupdate <cr>
 nnoremap <leader>gml :diffget //3 \| diffupdate <cr>
 
