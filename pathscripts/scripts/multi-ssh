@@ -3,10 +3,23 @@
 # reads a json file from $HOME/.config/multi-ssh/clusters.json for data
 
 ## pre-flight checks
+precheckpass=true
 if ! command -v jq &> /dev/null
 then 
 	echo "multi-ssh requires jq. please install jq"
-	exit 1
+	precheckpass=false
+fi 
+
+if ! command -v tmux &> /dev/null
+then 
+	echo "multi-ssh requires tmux. please install tmux"
+	precheckpass=false
+fi 
+
+if ! command -v parallel &> /dev/null
+then 
+	echo "multi-ssh requires parallel. please install parallel"
+	precheckpass=false
 fi 
 
 if [ -f $HOME/.config/multi-ssh/clusters.json ]
@@ -19,6 +32,10 @@ else
 	{ \"name\":\"clusterName\", \"nodes\":[\"node1\",\"node2\",\"node3\"]},
 	{ \"name\":\"otherCluster\", \"nodes\":[\"singleNode\"]} ]}"
 	echo $sample | jq -r
+	precheckpass=false
+fi
+
+if ! $precheckpass; then
 	exit 1
 fi
 
