@@ -26,11 +26,13 @@ alias ':q'=exit
 alias ':wq'=exit
 alias 'ZZ'=exit
 
+alias grep='grep --color'
+
 alias mkcd='. mkcd'
 alias fcd='. fuzzycd'
 alias work=tmux-session-template
 alias psrun='Powershell.exe  -File'
-
+alias 0x0="curl -F'file=@-' https://0x0.st" 
 # completion settings
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}'
 zstyle :compinstall filename '/home/mark/.zshrc'
@@ -72,10 +74,10 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 
 
-
 # program specific configs
 if command -v nvim &> /dev/null
 then 
+	export EDITOR=nvim
 	alias v=nvim
 	alias vim=nvim
 	alias n=nvim
@@ -133,6 +135,11 @@ then
 	alias fastef='dotnet ef --no-build'
 	alias dnup='dotnet update'
 	alias dnap='dotnet add package'
+fi
+
+if command -v ghcup &> /dev/null
+then
+	export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
 fi
 
 if command -v docker &> /dev/null
