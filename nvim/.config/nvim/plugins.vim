@@ -40,7 +40,7 @@ Plug 'neovim/nvim-lspconfig'
 "Plug 'hrsh7th/nvim-compe'
 Plug 'windwp/nvim-autopairs'
 Plug 'PowerShell/PowerShellEditorServices'
-Plug 'ErichDonGubler/lsp_lines.nvim'
+Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 Plug 'towolf/vim-helm'
 
 " cmp things
@@ -75,6 +75,9 @@ Plug 'ThePrimeagen/vim-be-good'
 Plug 'vim-conf-live/pres.vim'
 Plug 'Eandrju/cellular-automaton.nvim'
 
+" llm
+" Plug 'github/copilot.vim' " this was not fun to use
+
 
 call plug#end()
 
@@ -90,6 +93,82 @@ let g:vimwiki_list = [{'path':  '~/vimwiki', 'auto_diary_index': 1}]
 
 " LSP config
 lua << EOF
+ -- Set up nvim-cmp.
+ local cmp = require'cmp'
+ local lspkind = require'lspkind'
+
+ cmp.setup({
+   snippet = {
+     -- REQUIRED - you must specify a snippet engine
+     expand = function(args)
+       --vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+       -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+       -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+        vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+       -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
+     end,
+   },
+   window = {
+     -- completion = cmp.config.window.bordered(),
+     -- documentation = cmp.config.window.bordered(),
+   },
+   mapping = cmp.mapping.preset.insert({
+     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+     ['<C-f>'] = cmp.mapping.scroll_docs(4),
+     ['<C-Space>'] = cmp.mapping.complete(),
+     ['<C-e>'] = cmp.mapping.abort(),
+     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+     
+
+   }),
+   sources = cmp.config.sources({
+     { name = 'nvim_lsp' },
+     -- { name = 'vsnip' }, -- For vsnip users.
+     -- { name = 'luasnip' }, -- For luasnip users.
+     { name = 'ultisnips' }, -- For ultisnips users.
+     -- { name = 'snippy' }, -- For snippy users.
+   }, {
+     { name = 'buffer' },
+   })
+ })
+
+ -- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
+ -- Set configuration for specific filetype.
+ --[[ cmp.setup.filetype('gitcommit', {
+   sources = cmp.config.sources({
+     { name = 'git' },
+   }, {
+     { name = 'buffer' },
+   })
+})
+require("cmp_git").setup() ]]-- 
+
+ -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+ cmp.setup.cmdline({ '/', '?' }, {
+   mapping = cmp.mapping.preset.cmdline(),
+   sources = {
+     { name = 'buffer' }
+   }
+ })
+
+ -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+ cmp.setup.cmdline(':', {
+   mapping = cmp.mapping.preset.cmdline(),
+   sources = cmp.config.sources({
+     { name = 'nvim_lsp_document_symbol' },
+     { name = 'path' }
+   }, {
+     { name = 'cmdline' }
+   }),
+   matching = { disallow_symbol_nonprefix_matching = false }
+ })
+
+ -- Set up lspconfig.
+ local capabilities = require('cmp_nvim_lsp').default_capabilities()
+ -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+
+
+
 require("lsp_lines").setup()
 require("lsp_lines").toggle()
 vim.diagnostic.config({
@@ -110,21 +189,42 @@ local function toggle_diagnostics()
 end
 vim.keymap.set("n", "<Leader>ch", toggle_diagnostics, { desc = "Toggle [i]nline diagnostic type" })
 
-require'lspconfig'.eslint.setup{}
--- installed with:
--- npm i -g vscode-langservers-extracted
-require'lspconfig'.rust_analyzer.setup{}		
+vim.lsp.config('eslint',
+{
+	capabilities = capabilites
+}
+)
+vim.lsp.enable('eslint')
+
+vim.lsp.config('rust_analyzer',{
+	capabilities = capabilites
+})
+vim.lsp.enable('rust_analyzer')
 -- installed with:
 -- npm i -g pyright
-require('lspconfig').pyright.setup{}
+vim.lsp.config('pyright',
+{
+	capabilities = capabilites
+})
+vim.lsp.enable('pyright')
+
 
 -- installed with:
 -- npm i -g typescript typescript-language-server
-require('lspconfig').ts_ls.setup{}
+vim.lsp.config('ts_ls',
+{
+	capabilities = capabilites
+})
+vim.lsp.enable('ts_ls')
 
 -- installed with:
 -- npm install -g vim-language-server
-require'lspconfig'.vimls.setup{}
+--vim.lsp.config('vimls',
+--{	
+--capabilities = capabilites
+--})
+--vim.lsp.enable('vimls')
+
 -- extract zip from here:
 -- https://github.com/PowerShell/PowerShellEditorServices/releases
 -- attempts to use version built locally have not been fruitful
@@ -146,87 +246,10 @@ require'lspconfig'.vimls.setup{}
 -- C# LSP
 local pid = vim.fn.getpid()
 local omnisharp_bin = "omnisharp"
-local attach = function(client, bufnr)
-  if client.name == "omnisharp" then
-    client.server_capabilities.semanticTokensProvider = {
-      full = vim.empty_dict(),
-      legend = {
-        tokenModifiers = { "static_symbol" },
-        tokenTypes = {
-          "comment",
-          "excluded_code",
-          "identifier",
-          "keyword",
-          "keyword_control",
-          "number",
-          "operator",
-          "operator_overloaded",
-          "preprocessor_keyword",
-          "string",
-          "whitespace",
-          "text",
-          "static_symbol",
-          "preprocessor_text",
-          "punctuation",
-          "string_verbatim",
-          "string_escape_character",
-          "class_name",
-          "delegate_name",
-          "enum_name",
-          "interface_name",
-          "module_name",
-          "struct_name",
-          "type_parameter_name",
-          "field_name",
-          "enum_member_name",
-          "constant_name",
-          "local_name",
-          "parameter_name",
-          "method_name",
-          "extension_method_name",
-          "property_name",
-          "event_name",
-          "namespace_name",
-          "label_name",
-          "xml_doc_comment_attribute_name",
-          "xml_doc_comment_attribute_quotes",
-          "xml_doc_comment_attribute_value",
-          "xml_doc_comment_cdata_section",
-          "xml_doc_comment_comment",
-          "xml_doc_comment_delimiter",
-          "xml_doc_comment_entity_reference",
-          "xml_doc_comment_name",
-          "xml_doc_comment_processing_instruction",
-          "xml_doc_comment_text",
-          "xml_literal_attribute_name",
-          "xml_literal_attribute_quotes",
-          "xml_literal_attribute_value",
-          "xml_literal_cdata_section",
-          "xml_literal_comment",
-          "xml_literal_delimiter",
-          "xml_literal_embedded_expression",
-          "xml_literal_entity_reference",
-          "xml_literal_name",
-          "xml_literal_processing_instruction",
-          "xml_literal_text",
-          "regex_comment",
-          "regex_character_class",
-          "regex_anchor",
-          "regex_quantifier",
-          "regex_grouping",
-          "regex_alternation",
-          "regex_text",
-          "regex_self_escaped_character",
-          "regex_other_escape",
-        },
-      },
-      range = true,
-    }
-  end
-end
 
-require'lspconfig'.omnisharp.setup{
-    cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) };
+vim.lsp.config('omnisharp',{
+	capabilities = capabilites,
+    cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) },
 	filetypes = {"cs", "vb", "razor", "cshtml"},
     -- Enables support for reading code style, naming convention and analyzer
     -- settings from .editorconfig.
@@ -264,18 +287,29 @@ require'lspconfig'.omnisharp.setup{
     analyze_open_documents_only = false,
 
 	
-	on_attach = attach
+	on_attach = attach,
 
-}
+})
+vim.lsp.enable('omnisharp')
 
 --require'lspconfig'.csharp_ls.setup{}
-require'lspconfig'.hls.setup{
-}
+vim.lsp.config('hls',{
+	capabilities = capabilites
+})
+vim.lsp.enable('hls')
 
 -- ruby
-require'lspconfig'.ruby_lsp.setup{}
+vim.lsp.config('ruby_lsp',
+{
+	capabilities = capabilites
+})
+vim.lsp.enable('ruby_lsp')
 
-require'lspconfig'.helm_ls.setup{}
+vim.lsp.config('helm_ls',
+{
+	capabilities = capabilites
+})
+vim.lsp.enable('helm_ls')
 EOF
 
 " nvim-dap
@@ -314,79 +348,6 @@ EOF
 
 " cmp config
 lua <<EOF
-  -- Set up nvim-cmp.
-  local cmp = require'cmp'
-  local lspkind = require'lspkind'
-
-  cmp.setup({
-    snippet = {
-      -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        --vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-         vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-        -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
-      end,
-    },
-    window = {
-      -- completion = cmp.config.window.bordered(),
-      -- documentation = cmp.config.window.bordered(),
-    },
-    mapping = cmp.mapping.preset.insert({
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-	  
-
-    }),
-    sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      -- { name = 'vsnip' }, -- For vsnip users.
-      -- { name = 'luasnip' }, -- For luasnip users.
-      { name = 'ultisnips' }, -- For ultisnips users.
-      -- { name = 'snippy' }, -- For snippy users.
-    }, {
-      { name = 'buffer' },
-    })
-  })
-
-  -- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
-  -- Set configuration for specific filetype.
-  --[[ cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
-      { name = 'git' },
-    }, {
-      { name = 'buffer' },
-    })
- })
- require("cmp_git").setup() ]]-- 
-
-  -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline({ '/', '?' }, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-      { name = 'buffer' }
-    }
-  })
-
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-	  { name = 'nvim_lsp_document_symbol' },
-      { name = 'path' }
-    }, {
-      { name = 'cmdline' }
-    }),
-    matching = { disallow_symbol_nonprefix_matching = false }
-  })
-
-  -- Set up lspconfig.
-  local capabilities = require('cmp_nvim_lsp').default_capabilities()
-  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 EOF
 
 " Telescope config

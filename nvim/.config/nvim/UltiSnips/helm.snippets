@@ -1,0 +1,7 @@
+snippet envsecret "Kubernetes env var from secret" b
+- name: ${1:ENV_VAR_NAME}
+  valueFrom:
+    secretKeyRef:
+      key: ${1}
+      name: {{ .Values.secretName }}
+endsnippet
