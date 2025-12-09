@@ -189,6 +189,16 @@ local function toggle_diagnostics()
 end
 vim.keymap.set("n", "<Leader>ch", toggle_diagnostics, { desc = "Toggle [i]nline diagnostic type" })
 
+-- jinja
+--cargo install jinja-lsp
+vim.filetype.add {
+  extension = {
+    jinja = 'jinja',
+    jinja2 = 'jinja',
+    j2 = 'jinja',
+  },
+}
+vim.lsp.enable('jinja_lsp')
 vim.lsp.config('eslint',
 {
 	capabilities = capabilites

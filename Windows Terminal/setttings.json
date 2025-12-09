@@ -1,0 +1,152 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": 
+    [
+        {
+            "command": 
+            {
+                "action": "copy",
+                "singleLine": false
+            },
+            "id": "User.copy.644BA8F2"
+        },
+        {
+            "command": "paste",
+            "id": "User.paste"
+        },
+        {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "id": "User.splitPane.A6751878"
+        },
+        {
+            "command": "find",
+            "id": "User.find"
+        }
+    ],
+    "alwaysShowNotificationIcon": false,
+    "alwaysShowTabs": false,
+    "copyFormatting": "none",
+    "copyOnSelect": true,
+    "defaultProfile": "{04623baa-2cdf-4f1d-a7fd-f24410b13b33}",
+    "keybindings": 
+    [
+        {
+            "id": null,
+            "keys": "ctrl+shift+v"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+tab"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+c"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+insert"
+        },
+        {
+            "id": null,
+            "keys": "shift+insert"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+c"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+v"
+        },
+        {
+            "id": "User.find",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "id": "User.splitPane.A6751878",
+            "keys": "alt+shift+d"
+        }
+    ],
+    "launchMode": "default",
+    "newTabMenu": 
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
+    "profiles": 
+    {
+        "defaults": 
+        {
+            "bellStyle": "taskbar",
+            "colorScheme": "Gruvbox Dark",
+            "experimental.retroTerminalEffect": false,
+            "font": 
+            {
+                "face": "FiraCode Nerd Font Mono",
+                "size": 11
+            },
+            "intenseTextStyle": "none"
+        },
+    },
+    "schemes": 
+    [
+        {
+            "background": "#000000",
+            "black": "#0C0C0C",
+            "blue": "#0037DA",
+            "brightBlack": "#767676",
+            "brightBlue": "#3B78FF",
+            "brightCyan": "#61D6D6",
+            "brightGreen": "#16C60C",
+            "brightPurple": "#B4009E",
+            "brightRed": "#E74856",
+            "brightWhite": "#F2F2F2",
+            "brightYellow": "#F9F1A5",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#3A96DD",
+            "foreground": "#FFFFFF",
+            "green": "#13A10E",
+            "name": "Color Scheme 10",
+            "purple": "#881798",
+            "red": "#C50F1F",
+            "selectionBackground": "#FFFFFF",
+            "white": "#CCCCCC",
+            "yellow": "#C19C00"
+        },
+        {
+            "background": "#262626",
+            "black": "#262626",
+            "blue": "#377375",
+            "brightBlack": "#7F7061",
+            "brightBlue": "#719586",
+            "brightCyan": "#7DB669",
+            "brightGreen": "#AAB01E",
+            "brightPurple": "#C77089",
+            "brightRed": "#F73028",
+            "brightWhite": "#E6D4A3",
+            "brightYellow": "#F7B125",
+            "cursorColor": "#7F7061",
+            "cyan": "#578E57",
+            "foreground": "#E6D4A3",
+            "green": "#868715",
+            "name": "Gruvbox Dark",
+            "purple": "#A04B73",
+            "red": "#BE0F17",
+            "selectionBackground": "#E6D4A3",
+            "white": "#978771",
+            "yellow": "#CC881A"
+        }
+    ],
+    "showTabsInTitlebar": true,
+    "tabWidthMode": "equal",
+    "themes": [],
+    "trimBlockSelection": false,
+    "useAcrylicInTabRow": false
+}
