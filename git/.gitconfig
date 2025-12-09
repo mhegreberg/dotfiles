@@ -1,0 +1,30 @@
+[user]
+	name  = Mark Hegreberg
+	email = mark@hegreberg.io
+	signingkey = 55E528B0958E8F16
+
+[core]
+	excludesfile = /home/mark/.gitignore
+	editor = nvim
+[alias]
+	fugitive = !nvim -c G
+	fug = !nvim -c G
+	review = merge --no-commit --no-ff
+	review-continue = merge --continue
+	review-abort = merge --abort
+[init]
+	defaultBranch = master
+[safe]
+	directory = /home/mark/dotfiles
+[push]
+	autoSetupRemote = true
+[commit]
+	gpgsign = true
+[url "git@codeberg.org:"]
+	insteadOf = cb://
+[url "git@github.com:"]
+	insteadOf = gh://
+[url "aur@aur.archlinux.org:"]
+	insteadOf = aur://
+[url "git@gitlab.archlinux.org:"]
+	insteadOf = agl://
