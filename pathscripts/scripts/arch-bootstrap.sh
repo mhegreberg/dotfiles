@@ -60,8 +60,9 @@ echo "-------------------------------Option selection"
 echo "-----------------------------------------------"
 read -rsp "User password?" password
 echo 
-read -p "Install Dev Packages? (y/n)" installDev
-read -p "Install WSL Packages? (y/n)" installWSL
+read -p "Install Dev Packages? (y/n): " installDev
+read -p "Install WSL Packages? (y/n): " installWSL
+read -p "Install AUR Packages? (y/n): " installAUR
 
 echo "-----------------------------------------------"
 echo "---------------------------------Updating repos"
@@ -90,32 +91,32 @@ echo "$user:$(openssl passwd -6 $password)" | chpasswd -e
 # turn off passwd auth for the length of script
 echo '%wheel ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/10_wheel
 
-echo "-----------------------------------------------"
-echo "--------------------------------Installing paru"
-echo "-----------------------------------------------"
-if ! command -v paru &> /dev/null
+if [ "$installAUR" != "${installAUR#[Yy]}" ]
 then
-echo "-----------------------------------------------"
-echo "--------------------------------Installing paru"
-echo "-----------------------------------------------"
-	pacman -S --needed --noconfirm cargo
-	sudo -iu "$user" mkdir -p "/home/$user/source"
-	sudo -iu "$user" git clone https://aur.archlinux.org/paru.git "/home/$user/source/paru"
-	cd "/home/$user/source/paru"
-	sudo -u "$user" makepkg -s
-	pacman -U --noconfirm ./*.pkg.tar.*
-fi
+	if [ ! command -v paru &> /dev/null ]
+	then
+		echo "-----------------------------------------------"
+		echo "--------------------------------Installing paru"
+		echo "-----------------------------------------------"
+		pacman -S --needed --noconfirm cargo
+		sudo -iu "$user" mkdir -p "/home/$user/source"
+		sudo -iu "$user" git clone https://aur.archlinux.org/paru.git "/home/$user/source/paru"
+		cd "/home/$user/source/paru"
+		sudo -u "$user" makepkg
+		pacman -U --noconfirm ./*.pkg.tar.*
+	fi
 
-echo "-----------------------------------------------"
-echo "-----------------------Installing paru packages"
-echo "-----------------------------------------------"
-if [ "$installDev" != "${installDev#[Yy]}" ] 
-then
-	sudo -iu "$user" paru -S --noconfirm "${dev_aur[@]}"  
-fi
-if [ "$installWSL" != "${installWSL#[Yy]}" ] 
-then
-	sudo -iu "$user" paru -S --noconfirm "${wsl_aur[@]}"
+	echo "-----------------------------------------------"
+	echo "------------------------Installing AUR packages"
+	echo "-----------------------------------------------"
+	if [ "$installDev" != "${installDev#[Yy]}" ] 
+	then
+		sudo -iu "$user" paru -S --noconfirm "${dev_aur[@]}"  
+	fi
+	if [ "$installWSL" != "${installWSL#[Yy]}" ] 
+	then
+		sudo -iu "$user" paru -S --noconfirm "${wsl_aur[@]}"
+	fi
 fi
 
 
@@ -131,7 +132,7 @@ echo "-----------------------------------------------"
 echo "-------------------------------Stowing dotfiles"
 echo "-----------------------------------------------"
 cd "/home/$user/dotfiles"
-sudo -u "$user" stow nvim pathscripts tmux zsh
+sudo -u "$user" stow nvim pathscripts tmux zsh git
 
 echo "-----------------------------------------------"
 echo "--------------------------Adding neovim plugins"
