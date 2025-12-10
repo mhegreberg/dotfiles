@@ -39,7 +39,6 @@ ripgrep
 dev_aur=(
 kubecolor
 omnisharp-roslyn
-helm-ls
 wishlist
 )
 wsl_aur=(
@@ -93,7 +92,7 @@ echo '%wheel ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/10_wheel
 
 if [ "$installAUR" != "${installAUR#[Yy]}" ]
 then
-	if [ ! command -v paru &> /dev/null ]
+	if  ! command -v paru &> /dev/null 
 	then
 		echo "-----------------------------------------------"
 		echo "--------------------------------Installing paru"
@@ -139,7 +138,6 @@ echo "--------------------------Adding neovim plugins"
 echo "-----------------------------------------------"
 sudo -u "$user" curl -fLo "$/home/$user/.local/share/nvim/site/autoload/plug.vim" --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-sudo -u "$user" nvim -c "PlugInstall" -c "qa"
 echo "-----------------------------------------------"
 echo "----------------------------------------Cleanup"
 echo "-----------------------------------------------"

@@ -78,10 +78,8 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 if command -v nvim &> /dev/null
 then 
 	export EDITOR=nvim
-	alias v=nvim
 	alias vim=nvim
 	alias n=nvim
-	alias nv=nvim
 fi 
 
 if command -v git &> /dev/null
@@ -182,9 +180,6 @@ then
 	# wishlist
 	alias wl=wishlist
 fi
-
-
-
 
 #local environment specific configs
 touch ~/.zshrc.local
