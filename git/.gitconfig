@@ -20,6 +20,8 @@
 	autoSetupRemote = true
 [commit]
 	gpgsign = true
+[url "git@git.hegreberg.io:"]
+	insteadOf = me://
 [url "git@codeberg.org:"]
 	insteadOf = cb://
 [url "git@github.com:"]
