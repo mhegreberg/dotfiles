@@ -2,7 +2,7 @@
 # bootstrap my environment on any fresh install. Feel free to modify to you needs
 set -euo pipefail
 user="mark"
-dotfiles_repo="https://codeberg.org/m_a_r_k/dotfiles.git"
+dotfiles_repo="https://git.hegreberg.io/dotfiles.git"
 
 packages=(
 base
