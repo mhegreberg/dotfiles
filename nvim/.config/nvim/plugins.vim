@@ -11,10 +11,7 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'vim-conf-live/vimconflive2021-colorscheme'
 Plug 'ap/vim-css-color'
 
-" syntax-highlighing extention
-"Plug 'pprovost/vim-ps1'
-"Plug 'OrangeT/vim-csharp'
-"Plug 'neovimhaskell/haskell-vim'
+" Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'branch': 'master'}
 Plug 'nvim-treesitter/playground'
 
