@@ -15,7 +15,7 @@ Plug 'ap/vim-css-color'
 "Plug 'pprovost/vim-ps1'
 "Plug 'OrangeT/vim-csharp'
 "Plug 'neovimhaskell/haskell-vim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'branch': 'master'}
 Plug 'nvim-treesitter/playground'
 
 " tpope
@@ -397,7 +397,7 @@ EOF
 lua << EOF
 require'nvim-treesitter.configs'.setup {
 ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
+  ignore_install = { "phpdoc", "ipkg" }, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension
     disable = {},  -- list of language that will be disabled
