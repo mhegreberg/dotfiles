@@ -1,0 +1,7 @@
+configuration {
+	modi: "combi,drun,window,filebrowser,calc,emoji,keys,";
+	show: "combi";
+	font: "Fira Code Nerd Font";
+	sidebar-mode: true;
+}
+@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"

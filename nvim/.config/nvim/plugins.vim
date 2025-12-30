@@ -78,7 +78,9 @@ Plug 'Eandrju/cellular-automaton.nvim'
 
 call plug#end()
 
+
 colorscheme gruvbox
+hi! Normal ctermbg=NONE guibg=NONE
 "colorscheme vimconflive-2021
 
 " ultisnips config
