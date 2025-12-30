@@ -18,6 +18,7 @@ tmux
 zsh
 openssl
 man
+sl
 )
 
 dev_packages=(
@@ -46,6 +47,29 @@ wsl2-ssh-agent
 wslu
 )
 
+desktop_packges=(
+sway
+swaybg
+rofi
+rofi-calc
+rofi-emoji
+rofi-rbw
+wezterm
+pulseaudio
+pavucontrol
+alsa-firmware
+sof-firmware
+rbw
+wtype
+wl-clipboard
+pass
+ttf-firacode-nerd
+)
+
+desktop_aur=(
+rofi-power-menu
+)
+
 echo "-----------------------------------------------"
 echo "--------------------Mark's Arch Linux Bootstrap"
 echo "-----------------------------------------------"
@@ -61,6 +85,7 @@ read -rsp "User password?" password
 echo 
 read -p "Install Dev Packages? (y/n): " installDev
 read -p "Install WSL Packages? (y/n): " installWSL
+read -p "Install Desktop Packages? (y/n): " installDesktop
 read -p "Install AUR Packages? (y/n): " installAUR
 
 echo "-----------------------------------------------"
@@ -79,6 +104,10 @@ then
 	pacman -S "${dev_packages[@]}" --noconfirm
 fi
 
+if [ "$installDesktop" != "${installDesktop#[Yy]}" ] 
+then
+	pacman -S "${desktop_packages[@]}" --noconfirm
+fi
 echo "-----------------------------------------------"
 echo "----------------------------------Creating user"
 echo "-----------------------------------------------"
@@ -116,6 +145,10 @@ then
 	then
 		sudo -iu "$user" paru -S --noconfirm "${wsl_aur[@]}"
 	fi
+	if [ "$installDesktop" != "${installDesktop#[Yy]}" ] 
+	then
+		sudo -iu "$user" paru -S --noconfirm "${desktop_aur[@]}"
+	fi
 fi
 
 
@@ -132,12 +165,17 @@ echo "-------------------------------Stowing dotfiles"
 echo "-----------------------------------------------"
 cd "/home/$user/dotfiles"
 sudo -u "$user" stow nvim pathscripts tmux zsh git
+if [ "$installDesktop" != "${installDesktop#[Yy]}" ] 
+then
+	sudo -u "$user" stow rofi tmux wezterm sway
+fi
+
 
 echo "-----------------------------------------------"
 echo "--------------------------Adding neovim plugins"
 echo "-----------------------------------------------"
-sudo -u "$user" curl -fLo "$/home/$user/.local/share/nvim/site/autoload/plug.vim" --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+sudo -u "$user" sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 echo "-----------------------------------------------"
 echo "----------------------------------------Cleanup"
 echo "-----------------------------------------------"
