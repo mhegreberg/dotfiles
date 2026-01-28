@@ -27,8 +27,8 @@ set $menu rofi -show combi
 output * bg ~/Pictures/Wallpapers/wallpaper.jpg Fill
 output * scale 2
 
-default_border pixel 1
-default_floating_border pixel 1
+default_border pixel 2
+default_floating_border pixel 3
 hide_edge_borders both
 gaps inner 5
 gaps outer 5
@@ -80,6 +80,9 @@ gaps outer 5
 
     # Start your launcher
     bindsym $mod+d exec $menu
+
+    # Mousey Time
+    bindsym $mod+m exec mousse
 
     # Lock Machine
     bindsym $mod+shift+x exec swaylock
